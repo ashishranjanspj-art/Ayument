@@ -162,7 +162,7 @@ function ayument_dashboard_page() {
         ),
 
         array(
-            'icon' => '💊',
+            'icon' => '🛒',
             'title' => 'Medicine Store',
             'description' => 'Browse and order Ayurvedic medicines and products.',
             'url' => admin_url('admin.php?page=ayument-store')
@@ -196,45 +196,71 @@ function ayument_dashboard_page() {
 
         <style>
 
+            /* ==============================
+               AYUMENT SKY BLUE THEME
+               ============================== */
+
             .ayument-dashboard {
                 max-width: 1100px;
                 margin-top: 30px;
             }
 
+            /* HEADER */
+
             .ayument-header {
-                background: linear-gradient(135deg, #315c45, #4f8064);
+                background: linear-gradient(
+                    135deg,
+                    #87CEEB,
+                    #5BBCE3
+                );
+
                 color: #ffffff;
-                padding: 30px;
-                border-radius: 14px;
-                margin-bottom: 25px;
-                box-shadow: 0 5px 18px rgba(0,0,0,0.12);
+                padding: 32px;
+                border-radius: 16px;
+                margin-bottom: 28px;
+
+                box-shadow:
+                    0 8px 25px rgba(80, 180, 220, 0.20);
             }
 
             .ayument-header h1 {
                 color: #ffffff;
                 font-size: 32px;
                 margin: 0 0 10px;
+                font-weight: 700;
             }
 
             .ayument-header p {
                 font-size: 16px;
                 margin: 0;
+                color: #f7fdff;
             }
 
             .ayument-badge {
                 display: inline-block;
-                margin-top: 15px;
-                padding: 7px 14px;
-                background: rgba(255,255,255,0.18);
+                margin-top: 16px;
+                padding: 7px 15px;
+
+                background: rgba(255,255,255,0.22);
+
+                border: 1px solid rgba(255,255,255,0.35);
                 border-radius: 20px;
+
                 font-size: 13px;
                 font-weight: 600;
             }
 
+
+            /* SECTION */
+
             .ayument-section h2 {
                 font-size: 22px;
                 margin-bottom: 18px;
+                color: #244b5a;
             }
+
+
+            /* GRID */
 
             .ayument-grid {
                 display: grid;
@@ -242,65 +268,124 @@ function ayument_dashboard_page() {
                 gap: 20px;
             }
 
+
+            /* CARD LINK */
+
             .ayument-card-link {
                 text-decoration: none;
                 color: inherit;
                 display: block;
             }
 
+
+            /* CARD */
+
             .ayument-card {
                 background: #ffffff;
-                border: 1px solid #e3e8e5;
-                border-radius: 14px;
+
+                border: 1px solid #d8edf5;
+
+                border-radius: 15px;
+
                 padding: 24px;
+
                 min-height: 150px;
+
                 box-sizing: border-box;
-                transition: all 0.2s ease;
-                box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+
+                transition:
+                    transform 0.2s ease,
+                    box-shadow 0.2s ease,
+                    border-color 0.2s ease;
+
+                box-shadow:
+                    0 4px 14px rgba(65, 150, 185, 0.08);
             }
+
+
+            /* CARD HOVER */
 
             .ayument-card:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 8px 22px rgba(0,0,0,0.12);
-                border-color: #315c45;
+                transform: translateY(-4px);
+
+                border-color: #87CEEB;
+
+                box-shadow:
+                    0 10px 28px rgba(65, 170, 210, 0.18);
             }
 
+
+            /* ICON */
+
             .ayument-icon {
-                font-size: 28px;
+                font-size: 30px;
                 margin-bottom: 10px;
             }
+
+
+            /* CARD TITLE */
 
             .ayument-card h2 {
                 font-size: 20px;
                 margin: 0 0 8px;
-                color: #26372d;
+
+                color: #244b5a;
             }
 
+
+            /* CARD DESCRIPTION */
+
             .ayument-card p {
-                color: #647067;
+                color: #647b84;
+
                 font-size: 14px;
+
                 line-height: 1.6;
+
                 margin: 0 0 18px;
             }
 
+
+            /* BUTTON */
+
             .ayument-button {
                 display: inline-block;
-                padding: 8px 16px;
-                background: #315c45;
+
+                padding: 8px 17px;
+
+                background: #5BBCE3;
+
                 color: #ffffff;
-                border-radius: 6px;
+
+                border-radius: 7px;
+
                 font-weight: 600;
+
                 font-size: 13px;
+
+                transition: background 0.2s ease;
             }
 
+
+            .ayument-card:hover .ayument-button {
+                background: #3BA8D5;
+            }
+
+
+            /* RESPONSIVE */
+
             @media (max-width: 700px) {
+
                 .ayument-grid {
                     grid-template-columns: 1fr;
                 }
+
             }
 
         </style>
 
+
+        <!-- HEADER -->
 
         <div class="ayument-header">
 
@@ -317,6 +402,8 @@ function ayument_dashboard_page() {
         </div>
 
 
+        <!-- MODULES -->
+
         <div class="ayument-section">
 
             <h2>Platform Modules</h2>
@@ -327,7 +414,7 @@ function ayument_dashboard_page() {
 
                     <a
                         class="ayument-card-link"
-                        href="<?php echo $module['url']; ?>"
+                        href="<?php echo esc_url($module['url']); ?>"
                     >
 
                         <div class="ayument-card">
@@ -337,11 +424,11 @@ function ayument_dashboard_page() {
                             </div>
 
                             <h2>
-                                <?php echo $module['title']; ?>
+                                <?php echo esc_html($module['title']); ?>
                             </h2>
 
                             <p>
-                                <?php echo $module['description']; ?>
+                                <?php echo esc_html($module['description']); ?>
                             </p>
 
                             <span class="ayument-button">
@@ -371,6 +458,7 @@ function ayument_dashboard_page() {
 */
 
 function ayument_ai_page() {
+
     ayument_module_page(
         '🤖 AI Consultation',
         'AI-assisted Ayurvedic guidance and preliminary health information.',
@@ -386,6 +474,7 @@ function ayument_ai_page() {
 */
 
 function ayument_doctor_page() {
+
     ayument_module_page(
         '👨‍⚕️ Consult Doctor',
         'Connect users with verified Ayurvedic doctors.',
@@ -401,6 +490,7 @@ function ayument_doctor_page() {
 */
 
 function ayument_patients_page() {
+
     ayument_module_page(
         '👤 Patients',
         'Manage patient profiles and consultation records.',
@@ -416,6 +506,7 @@ function ayument_patients_page() {
 */
 
 function ayument_appointments_page() {
+
     ayument_module_page(
         '📅 Appointments',
         'Schedule and manage consultations and appointments.',
@@ -431,6 +522,7 @@ function ayument_appointments_page() {
 */
 
 function ayument_prescriptions_page() {
+
     ayument_module_page(
         '💊 Prescriptions',
         'Manage prescriptions created during consultations.',
@@ -446,8 +538,9 @@ function ayument_prescriptions_page() {
 */
 
 function ayument_store_page() {
+
     ayument_module_page(
-        '💊 Medicine Store',
+        '🛒 Medicine Store',
         'Browse and order Ayurvedic medicines and products.',
         'The Ayurvedic medicine store will be developed here.'
     );
@@ -461,6 +554,7 @@ function ayument_store_page() {
 */
 
 function ayument_research_page() {
+
     ayument_module_page(
         '📚 Research Hub',
         'Explore Ayurvedic research, literature and educational resources.',
@@ -476,6 +570,7 @@ function ayument_research_page() {
 */
 
 function ayument_analytics_page() {
+
     ayument_module_page(
         '📊 Analytics',
         'View platform usage and business analytics.',
@@ -491,6 +586,7 @@ function ayument_analytics_page() {
 */
 
 function ayument_settings_page() {
+
     ayument_module_page(
         '⚙️ Settings',
         'Configure AyuMent platform settings.',
@@ -517,17 +613,27 @@ function ayument_module_page($title, $description, $message) {
                 padding:35px;
                 margin-top:30px;
                 border-radius:14px;
-                border:1px solid #e3e8e5;
-                box-shadow:0 4px 15px rgba(0,0,0,0.08);
+                border:1px solid #d8edf5;
+                box-shadow:0 5px 18px rgba(65,150,185,0.10);
             "
         >
 
-            <h1 style="font-size:30px;">
-                <?php echo $title; ?>
+            <h1
+                style="
+                    font-size:30px;
+                    color:#244b5a;
+                "
+            >
+                <?php echo esc_html($title); ?>
             </h1>
 
-            <p style="font-size:17px;color:#555;">
-                <?php echo $description; ?>
+            <p
+                style="
+                    font-size:17px;
+                    color:#647b84;
+                "
+            >
+                <?php echo esc_html($description); ?>
             </p>
 
             <hr>
@@ -536,18 +642,28 @@ function ayument_module_page($title, $description, $message) {
                 style="
                     margin-top:25px;
                     padding:22px;
-                    background:#f1f7f3;
-                    border-left:5px solid #315c45;
+                    background:#eefaff;
+                    border-left:5px solid #5BBCE3;
                     border-radius:8px;
                 "
             >
 
-                <h2 style="margin-top:0;">
+                <h2
+                    style="
+                        margin-top:0;
+                        color:#244b5a;
+                    "
+                >
                     AyuMent Development Module
                 </h2>
 
-                <p style="font-size:16px;">
-                    <?php echo $message; ?>
+                <p
+                    style="
+                        font-size:16px;
+                        color:#536d77;
+                    "
+                >
+                    <?php echo esc_html($message); ?>
                 </p>
 
                 <p>
@@ -558,12 +674,20 @@ function ayument_module_page($title, $description, $message) {
             </div>
 
             <p style="margin-top:25px;">
+
                 <a
-                    href="<?php echo admin_url('admin.php?page=ayument-dashboard'); ?>"
+                    href="<?php echo esc_url(
+                        admin_url('admin.php?page=ayument-dashboard')
+                    ); ?>"
                     class="button button-primary"
+                    style="
+                        background:#5BBCE3;
+                        border-color:#5BBCE3;
+                    "
                 >
-                    ← Back to AyuMent Dashboards
+                    ← Back to AyuMent Dashboard
                 </a>
+
             </p>
 
         </div>
